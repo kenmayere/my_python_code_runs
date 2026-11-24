@@ -1,4 +1,5 @@
 # --------------------------- Exploring Object Oriented Programming -----------------
+# Resource used: Joe Marine OOP course on LinkedIn learning.
 
 ''' 
 In this script, I will explore some of the basics in OOP, I will explore the following:
