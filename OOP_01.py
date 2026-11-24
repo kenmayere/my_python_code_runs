@@ -55,5 +55,161 @@ class Book:
 
 # Creating b1 object
 b1 = Book('Introduction to Python', 'Kenford', 280, 25.60)
+'''
+Why is the first argument 'self', because whenever a method is passed on a python
+object, the object automatically gets passed as the first argument
+'''
 
-print('Hello')
+# Instance methods and attribute for a class
+# Let me add a function to get a price for any book
+
+class Book:
+    def __init__(self, title, author, pages, price):
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.price = price
+
+    def getprice(self):
+        return self.price
+
+b2 = Book('Intro to Python', 'Kenford', 280, 25.84)
+# Calling the getprice method
+print(b2.getprice())
+
+# Let me further add a discount method, that takes in an amount
+# I will just here create the logic of the method and comment it later, will modify the code
+ 
+    # def getdiscount(self, amount):
+    #     self._amount = amount
+
+''' Using self._amount as in the code logic above defines a method that can be 
+used within the class defining it, not for the public - cannot be inherited.
+Since the attribute (amount) was not defined in the __init__ method, I will use the 'hasattr'
+function to test for it.
+'''
+# The modified code will be
+class Book:
+    def __init__(self, title, author, pages, price):
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.price = price
+    def getprice(self):
+        if hasattr(self, '_discount'):
+            return self.price - (self.price * self._discount)
+        else:
+            return self.price
+    def getdiscount(self, amount):
+        self._discount = amount
+
+b3 = Book('Intro to Python', 'Kenford', 280, 25.84)
+print(b3.getprice())
+b3.getdiscount(0.25)
+print(b3.getprice())
+
+# Checking instance types using an additional class: Newspaper
+class Newspaper:
+    def __init__(self, name):
+        self.name = name
+
+n1 = Newspaper('The Nation')
+n2 = Newspaper('The Daily Times')
+
+print(type(b1)) # Result in <class 'Book'>
+print(type(n1)) # Result in <class 'Newspaper'>
+
+'''
+But a more intutive way is to use 'isistance' which checks if an object 
+is of a particula class, it evaluates to a bool. This means I can make comparisions'''
+print(isinstance(b3, Book))
+
+# -------- Class attributes and  methods ----------------
+'''
+Class attributes are shared across all the instances of the class, different with instance attributes
+which are only shared in that instance.
+In the following example, I will explore the class- and static methods
+'''
+class Book:
+    BOOK_TYPES = ('HARDCOPY', 'PAPERBACK', 'EBOOK')
+
+    @classmethod
+    def get_book_type(cls):
+        return cls.BOOK_TYPES
+    
+    def __init__(self, title, booktype):
+        self.title = title
+        if (not booktype in Book.BOOK_TYPES):
+            raise ValueError(f'{booktype} is not a valid booktype')
+        else:
+            self.booktype = booktype
+
+b5 = Book('Title5', 'HARDCOPY')
+b6 = Book('Title6', 'EBOOK')
+
+'''
+In the above code logic, a few things are happening:
+    1. I have created BOOK_TYPES class attribute meaning it can be usable
+    across all the instance methods.
+    2. I have created the class method using the @classmethod decorator. This will take in the
+    class as its argument and it is allowine me to access the class attributes
+    3. Cool staff using the if-statement as a way of creating an instance method attribute
+'''
+# Using static methods
+
+# Static methods do not have any arguments. I will modify the code above and explain later on
+
+class Book:
+    BOOK_TYPES = ('HARDCOPY', 'PAPERBACK', 'EBOOK')
+
+    @classmethod
+    def get_book_type(cls):
+        return cls.BOOK_TYPES
+
+    __booklist = None
+
+    def __init__(self, title, booktype):
+        self.title = title
+        if (not booktype in Book.BOOK_TYPES):
+            raise ValueError (f'{booktype} is not a valid booktype')
+        else:
+            self.booktype = booktype
+
+    def get_book_list():
+        if Book.__booklist == None:
+            Book.__booklist = []
+            return Book.__booklist
+
+'''
+In the above code, a few things are happening:
+    1. I have added a class attribute __booklist. It contains 2 underscores
+    meaning it will be private.
+    2. The get_book_list method is a static method since it doesnt take in any argument
+    3. Interesting how the static method has been used in this class
+    '''
+
+# Adding books to the list, remember booklist is an empty list.
+
+thebooks = Book.get_book_list()
+b5 = Book('Title5', 'HARDCOPY')
+b6 = Book('Title6', 'EBOOK')
+thebooks.append(b5)
+thebooks.append(b6)
+
+
+# Just to wrap up, I have isolated the static method just to explore further on how it works
+# Ofcourse not very useful
+class Movie:
+    __movielist = None
+
+    def get_movie_list():
+        if Movie.__movielist == None:
+            Book.__movielist = []
+            return Book.__movielist
+
+movie_list = Movie.get_movie_list()
+movie_list.append('Action 1')
+
+movie_list
+
+# ------------------- End of Chapter ---------------------
