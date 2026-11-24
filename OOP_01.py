@@ -1,8 +1,8 @@
-# --------------------------- Exploring Object Oriented Programming -----------------
-# Resource used: Joe Marine OOP course on LinkedIn learning.
+# --------------------------- Exploring Object-Oriented Programming -----------------
+# Resource used: Joe Marini OOP course on LinkedIn Learning.
 
 ''' 
-In this script, I will explore some of the basics in OOP, I will explore the following:
+In this script, I will explore some of the basics in OOP. I will explore the following:
     1. Defining classes and creating objects
     2. Instance class methods and attribute functions
     3. Class methods
@@ -10,8 +10,8 @@ In this script, I will explore some of the basics in OOP, I will explore the fol
 
 # ---------- Concepts and Terms ---------
 '''
-In python, one is not required to to use objects and classes (everthing in python is an object). However, as programs become more complex,
-it is had to have them organized. This is where Object Oriented Programming is essential.
+In Python, one is not required to use objects and classes (everything in Python is an object). However, as programs become more complex,
+it is had to have them organized. This is where Object-Oriented Programming is essential.
 
 ----- Why is it important ----
     1. OOP keep code structrured and organized: It groups data and behavior (actions) in one place
